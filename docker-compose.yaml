@@ -20,7 +20,7 @@ services:
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       ##PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       SPICEDB_DATASTORE_ENGINE: postgres 
-      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:postgrespassword@postgres:5432/postgres?sslmode=disable
+      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:secret@postgres:5432/postgres?sslmode=disable
   spicedb-engine:
     image: quay.io/authzed/spicedb:latest
     ports:
@@ -37,6 +37,6 @@ services:
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       ##PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       SPICEDB_DATASTORE_ENGINE: postgres 
-      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:postgrespassword@postgres:5432/postgres?sslmode=disable
+      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:secret@postgres:5432/postgres?sslmode=disable
 volumes:
   db_data:
