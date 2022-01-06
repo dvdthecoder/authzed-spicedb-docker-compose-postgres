@@ -1,0 +1,42 @@
+version: '3.6'
+services:
+  postgres:
+    image: postgres:12
+    restart: always
+    volumes:
+    - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: defaultdb
+  spicedb-engine-migrate:
+    image: quay.io/authzed/spicedb:latest
+    depends_on:
+     - postgres
+    command: migrate head
+    environment:
+      ## spicedb preshared key for local execution
+      SPICEDB_GRPC_PRESHARED_KEY: vista
+      SPICEDB_LOG_LEVEL: "debug"
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      ##PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      SPICEDB_DATASTORE_ENGINE: postgres 
+      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:postgrespassword@postgres:5432/postgres?sslmode=disable
+  spicedb-engine:
+    image: quay.io/authzed/spicedb:latest
+    ports:
+    - "8080:8080"
+    - "9090:9090"
+    - "50051:50051"
+    depends_on:
+     - spicedb-engine-migrate
+    command: serve 
+    environment:
+      ## spicedb preshared key for local execution
+      SPICEDB_GRPC_PRESHARED_KEY: vista
+      SPICEDB_LOG_LEVEL: "debug"
+      ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
+      ##PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
+      SPICEDB_DATASTORE_ENGINE: postgres 
+      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:postgrespassword@postgres:5432/postgres?sslmode=disable
+volumes:
+  db_data:
