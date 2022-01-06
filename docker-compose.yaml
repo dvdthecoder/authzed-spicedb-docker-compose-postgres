@@ -32,7 +32,7 @@ services:
     command: serve 
     environment:
       ## spicedb preshared key for local execution
-      SPICEDB_GRPC_PRESHARED_KEY: vista
+      SPICEDB_GRPC_PRESHARED_KEY: somerandomkey
       SPICEDB_LOG_LEVEL: "debug"
       ## this env var can be used to add the above postgres database to Hasura as a data source. this can be removed/updated based on your needs
       ##PG_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
