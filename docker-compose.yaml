@@ -24,7 +24,6 @@ services:
      - spicedb-engine-migrate
     command: serve 
     environment:
-      ## spicedb preshared key for local execution
       SPICEDB_GRPC_PRESHARED_KEY: somerandomkey
       SPICEDB_LOG_LEVEL: "debug"
       SPICEDB_DATASTORE_ENGINE: postgres 
