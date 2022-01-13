@@ -13,6 +13,11 @@ services:
     depends_on:
      - postgres
     command: migrate head
+    environment:
+      SPICEDB_GRPC_PRESHARED_KEY: somerandomkey
+      SPICEDB_LOG_LEVEL: debug
+      SPICEDB_DATASTORE_ENGINE: postgres 
+      SPICEDB_DATASTORE_CONN_URI: postgres://postgres:secret@postgres:5432/postgres?sslmode=disable
   spicedb-engine:
     image: quay.io/authzed/spicedb:latest
     restart: always
@@ -26,7 +31,7 @@ services:
     command: serve 
     environment:
       SPICEDB_GRPC_PRESHARED_KEY: somerandomkey
-      SPICEDB_LOG_LEVEL: "debug"
+      SPICEDB_LOG_LEVEL: debug
       SPICEDB_DATASTORE_ENGINE: postgres 
       SPICEDB_HTTP_ENABLED: true 
       SPICEDB_DATASTORE_CONN_URI: postgres://postgres:secret@postgres:5432/postgres?sslmode=disable
