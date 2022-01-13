@@ -14,8 +14,8 @@ This Docker Compose setup runs [SpiceDB Permission Database](https://github.com/
 Visit http://localhost:8080 to see next steps, including loading the schema
 
 ### Rest Interface
-- SpiceDB primarily exposes its API via gRPC alternatively HTTP/JSON API are available as provided here (https://docs.authzed.com/reference/api)
-- SpiceDB provides for multiple ways to connect (https://docs.authzed.com/reference/clients) 
+- SpiceDB primarily exposes its API via gRPC alternatively HTTP/JSON API are available as provided [here](https://docs.authzed.com/reference/api)
+- SpiceDB provides for multiple ways to [connect](https://docs.authzed.com/reference/clients) 
 - This image enables REST end-points 
 
 ### Rest Usage
